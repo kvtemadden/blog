@@ -1,0 +1,20 @@
+[
+  {
+    "name": "10 Years of Tech - The Evolution",
+    "description": "Tech has changed a lot over the last ten years, so join me on a tech journey where we analyse the last 10 years of technology.",
+    "date_created": "2019-11-10",
+    "filename": "ten-years-of-tech.html"
+  },
+  {
+    "name": "The Robot Takeover",
+    "description": "Have you heard that robots are going to take over the world? Surely you have. Find out when and where this is gonna happen in this blog post.",
+    "date_created": "2020-03-02",
+    "filename": "robot-takeover.html"
+  },
+  {
+    "name": "Are Apple really Tech gurus?",
+    "description": "Is Apple really all it's claimed to be over the last five years? I'm not so sure, or am I? Find out more inside this post!",
+    "date_created": "2020-01-01",
+    "filename": "apple.html"
+  }
+]
