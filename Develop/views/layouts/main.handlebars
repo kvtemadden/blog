@@ -13,11 +13,17 @@
     <h1>
       Tech Blog
     </h1>
-    {{#if logged_in}}
     <nav>
+      <ul>
+      <li>
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+      </li>
+      </ul>
+    {{#if logged_in}}
       <button class="btn" id="logout">logout</button>
-    </nav>
     {{/if}}
+     </nav>
   </header>
   <main class="container container-fluid mt-5">
     {{{ body }}}
