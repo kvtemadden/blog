@@ -23,6 +23,10 @@ Blog.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    filename: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
