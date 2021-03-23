@@ -3,6 +3,16 @@ const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
+router.get('/', async (req, res) => {
+  try {
+    res.render('newpost');
+    }
+  catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
 router.post('/', withAuth, async (req, res) => {
   try {
     const newBlog = await Blog.create({
