@@ -1,9 +1,13 @@
-{{#each blogs as |blog| }}
+<h1>My Blog Posts</h1>
+
+{{#each myBlogs as |blog| }}
 <div class="row align-center mb-5">
   <div class="col-md-6">
     <h2><a href="/post/{{blog.id}}">{{blog.name}}</a></h2>
     <p>{{blog.description}}</p>  
-    <p>{{format_date blog.date_created}} | {{user.name}}</p>
+    <p>{{format_date blog.date_created}} | Me</p>
    </div>
 </div>
 {{/each}}
+
+
