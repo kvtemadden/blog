@@ -6,6 +6,8 @@
     <h3 id="title" contenteditable="true">{{blog.name}} </h3>
   </div>
   <div>
+  <p>Blog description:</p>
+     <p id="desc" contenteditable="true">{{blog.description}}</p>
     <p>Blog content:</p>
     {{> ( lookup blog 'filename')}}
   </div>
