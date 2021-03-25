@@ -143,7 +143,7 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/:id', withAuth, async (req, res) => {
   try {
     console.log(req);
     const newComment = await Comment.create({
