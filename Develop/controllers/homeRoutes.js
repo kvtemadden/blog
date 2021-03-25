@@ -49,7 +49,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
 
     const userBlogs = await Blog.findAll({ 
-      where: { user_id: 2 },
+      where: { user_id: req.session.user_id },
       order: [['name', 'ASC']], 
     });
 

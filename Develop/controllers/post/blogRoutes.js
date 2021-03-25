@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 const fs = require("fs");
 
 
-router.get('/', async (req, res) => {
+router.get('/new', async (req, res) => {
   try {
     res.render('newpost');
     }
@@ -33,16 +33,26 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/new', withAuth, async (req, res) => {
   try {
+    console.log(req);
     const newBlog = await Blog.create({
-      ...req.body,
+      name: req.body.name,
+      description: req.body.description,
       user_id: req.session.user_id,
     });
 
+    updateFilename(newBlog);
+    const filename = newBlog.id;
+    const writeFile = req.body.text;
+
+    console.log(res);
+    writeToFile(writeFile, filename);
+    
     res.status(200).json(newBlog);
   } catch (err) {
     res.status(400).json(err);
+    console.log(err);
   }
 });
 
@@ -76,10 +86,11 @@ router.put('/edit/:id', withAuth, async (req, res) => {
       },
     });
     
+    blogData.description = req.body.description;
     const writeFile = req.body.text;
     const filename = req.body.filename;
 
-    updatePostFile(writeFile, filename);
+    writeToFile(writeFile, filename);
 
     if (!blogData) {
       res.status(404).json({ message: 'No blog found with this id!' });
@@ -115,9 +126,26 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
-function updatePostFile(post, filename) {
+function writeToFile(post, filename) {
   fs.writeFile(`./views/partials/${filename}.handlebars`, post, (err) =>
       err ? console.error(err) : console.log('New note added successfully!'));
+};
+
+updateFilename = async (blog) => {
+
+  const updatedFilename = blog.id;
+  try {
+  const getBlog = await Blog.findByPk (blog.id)
+  
+  if (getBlog) {
+    getBlog.update({
+      filename: updatedFilename,
+    })
+
+}
+}catch (err) {
+  console.log(err);
+}
 };
 
 module.exports = router;
