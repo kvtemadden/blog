@@ -1,0 +1,21 @@
+<h3>Comments:</h3>
+<p contenteditable="true" id="comment">Enter a comment...</p>
+<button id="submit-comment">Submit comment</button>
+<hr>
+
+<div class="comments">
+  {{#each this}}
+    <div class="card">
+        <h3 class="card-header"></h3>
+        <section class="comment card-body">
+            <div class="text">
+                {{this.text}}
+            </div>
+            <div class="meta">
+                -{{this.user.name}}, 
+                {{format_date this.date_created}}
+            </div>
+        </section>
+    </div>
+  {{/each}}
+</div>

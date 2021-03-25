@@ -8,7 +8,7 @@ const { Console } = require('console');
 router.get('/new', async (req, res) => {
   try {
     res.render('newpost');
-    }
+  }
   catch (err) {
     res.status(400).json(err);
   }
@@ -27,7 +27,7 @@ router.get('/edit/:id', async (req, res) => {
       blog,
       logged_in: req.session.logged_in,
     });
-    }
+  }
   catch (err) {
     res.status(400).json(err);
   }
@@ -47,9 +47,8 @@ router.post('/new', withAuth, async (req, res) => {
     const filename = newBlog.id;
     const writeFile = req.body.text;
 
-    console.log(res);
     writeToFile(writeFile, filename);
-    
+
     res.status(200).json(newBlog);
   } catch (err) {
     res.status(400).json(err);
@@ -86,7 +85,7 @@ router.put('/edit/:id', withAuth, async (req, res) => {
         id: req.params.id,
       },
     });
-    
+
     blogData.description = req.body.description;
     const writeFile = req.body.text;
     const filename = req.body.filename;
@@ -100,7 +99,7 @@ router.put('/edit/:id', withAuth, async (req, res) => {
 
     blogData.name = req.body.name;
     res.status(200).json(blogData);
-    
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -109,20 +108,18 @@ router.put('/edit/:id', withAuth, async (req, res) => {
 
 router.get('/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await Blog.findOne({ 
+    const blogData = await Blog.findOne({
       where: {
-        id: req.params.id 
-      },    
-      include: [
-        {
-          model: User,
-          attributes: ['id', 'name']
+        id: req.params.id
       },
-      {
+      include: [{
         model: Comment,
-        attributes: ['id', 'text', 'user_id']
-    },
-      ]
+        attributes: ['id', 'text', 'blog_id', 'user_id', 'date_created'],
+        include: {
+            model: User,
+            attributes: ['name']
+        }
+    }],
     });
 
     if (!blogData) {
@@ -131,6 +128,7 @@ router.get('/:id', withAuth, async (req, res) => {
     }
 
     const blog = blogData.get({ plain: true });
+
     res.render('blog', {
       blog,
       logged_in: req.session.logged_in,
@@ -145,12 +143,13 @@ router.get('/:id', withAuth, async (req, res) => {
 
 router.post('/:id', withAuth, async (req, res) => {
   try {
-    console.log(req);
     const newComment = await Comment.create({
       text: req.body.text,
       user_id: req.session.user_id,
       blog_id: req.body.id,
     });
+
+    console.log(req.session.user_id);
 
     res.status(200).json(newComment);
   } catch (err) {
@@ -162,24 +161,24 @@ router.post('/:id', withAuth, async (req, res) => {
 
 function writeToFile(post, filename) {
   fs.writeFile(`./views/partials/${filename}.handlebars`, post, (err) =>
-      err ? console.error(err) : console.log('New note added successfully!'));
+    err ? console.error(err) : console.log('New post added successfully!'));
 };
 
 updateFilename = async (blog) => {
 
   const updatedFilename = blog.id;
   try {
-  const getBlog = await Blog.findByPk (blog.id)
-  
-  if (getBlog) {
-    getBlog.update({
-      filename: updatedFilename,
-    })
+    const getBlog = await Blog.findByPk(blog.id)
 
-}
-}catch (err) {
-  console.log(err);
-}
+    if (getBlog) {
+      getBlog.update({
+        filename: updatedFilename,
+      })
+
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = router;
