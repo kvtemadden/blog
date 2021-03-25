@@ -6,6 +6,7 @@ const updatePost = async (event) => {
   console.log(id);
 
   var blogname = document.querySelector('#title').innerHTML;
+  var blogdesc = document.querySelector('#desc').innerHTML;
   var blogtext = document.querySelector('#blog-text').innerHTML;
   var filename = id.trim("?");
   var html = `<p id="blog-text" contenteditable="true">${blogtext}</p>`
@@ -16,6 +17,7 @@ const updatePost = async (event) => {
         id: id,
         name: blogname,
         text: html,
+        description: blogdesc,
         filename: filename
       }),
       headers: { 'Content-Type': 'application/json' },
