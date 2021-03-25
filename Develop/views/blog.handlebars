@@ -1,3 +1,13 @@
 <h2>{{blog.name}}</h2>
+<p>{{format_date blog.date_created}} | {{blog.user.name}}</p>
 {{> (lookup blog 'filename')}}
 
+<hr>
+<h3>Comments:</h3>
+<p contenteditable="true" id="comment">Enter a comment...</p>
+<button id="submit-comment">Submit comment</button>
+<hr>
+{{#each blog}}
+<h5>{{blog.comment.user_name}}</h5>
+<p id="comment">{{blog.comment.text}}</p>
+{{/each}}

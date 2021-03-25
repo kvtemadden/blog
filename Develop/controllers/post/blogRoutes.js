@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { Blog } = require('../../models');
+const { Blog, Comment, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const fs = require("fs");
+const { Console } = require('console');
 
 
 router.get('/new', async (req, res) => {
@@ -108,7 +109,22 @@ router.put('/edit/:id', withAuth, async (req, res) => {
 
 router.get('/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id);
+    const blogData = await Blog.findOne({ 
+      where: {
+        id: req.params.id 
+      },    
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'name']
+      },
+      {
+        model: Comment,
+        attributes: ['id', 'text', 'user_id']
+    },
+      ]
+    });
+
     if (!blogData) {
       res.status(404).json({ message: 'No blog found with this id!' });
       return;
@@ -122,7 +138,25 @@ router.get('/:id', withAuth, async (req, res) => {
 
     // res.status(200).json(blogData);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
+  }
+});
+
+router.post('/', withAuth, async (req, res) => {
+  try {
+    console.log(req);
+    const newComment = await Comment.create({
+      text: req.body.text,
+      user_id: req.session.user_id,
+      blog_id: req.body.id,
+    });
+
+    res.status(200).json(newComment);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+
   }
 });
 
