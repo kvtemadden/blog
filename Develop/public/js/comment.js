@@ -17,7 +17,8 @@ const postComment = async (event) => {
     //adds to db.json
     if (response.ok) {
       alert('Comment posted!');
-      console.log(response);
+      location.reload();
+      return false;
     
     } else {
       alert('Failed to post comment');
