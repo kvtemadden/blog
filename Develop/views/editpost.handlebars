@@ -9,7 +9,7 @@
   <p>Blog description:</p>
      <p id="desc" contenteditable="true">{{blog.description}}</p>
     <p>Blog content:</p>
-    {{> ( lookup blog 'filename')}}
+    <p contenteditable="true" id="blog-text">{{> ( lookup blog 'filename')}}</p>
   </div>
   <div class="form-group">
     <button class="btn btn-primary" type="submit" id="update">Update Post</button>

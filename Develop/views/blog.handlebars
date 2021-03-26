@@ -1,6 +1,6 @@
 <h2>{{blog.name}}</h2>
 <p>{{format_date blog.date_created}} | {{blog.user.name}}</p>
-{{> (lookup blog 'filename')}}
+<p contenteditable="false" id="blog-text">{{> (lookup blog 'filename')}}</p>
 
 <hr>
 

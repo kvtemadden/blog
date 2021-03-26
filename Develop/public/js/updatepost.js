@@ -9,7 +9,7 @@ const updatePost = async (event) => {
   var blogdesc = document.querySelector('#desc').innerHTML;
   var blogtext = document.querySelector('#blog-text').innerHTML;
   var filename = id.trim("?");
-  var html = `<p id="blog-text" contenteditable="true">${blogtext}</p>`
+  var html = `${blogtext}`
 
     const response = await fetch("/post/edit/" + id, {
       method: 'PUT',

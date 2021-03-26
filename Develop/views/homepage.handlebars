@@ -1,9 +1,10 @@
 {{#each blogs as |blog| }}
 <div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2><a href="/post/{{blog.id}}">{{blog.name}}</a></h2>
-    <p>{{blog.description}}</p>  
-    <p>{{format_date blog.date_created}} | {{user.name}}</p>
+  <div class="col-md-6 blog-post">
+    <h2 class="padding blog-header"><a href="/post/{{blog.id}}">{{blog.name}}</a></h2>
+    <p class="padding blog-description">{{blog.description}}</p>  
+    <p class="padding blog-info">{{format_date blog.date_created}} | {{user.name}}</p>
+    <p class="padding-r read-more"><a href="/post/{{blog.id}}">Read post</a></p>
    </div>
 </div>
 {{/each}}

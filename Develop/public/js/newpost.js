@@ -5,7 +5,7 @@ const createPost = async (event) => {
   var blogtext = document.querySelector('#blog-text').innerHTML;
   var blogdesc = document.querySelector('#blog-desc').innerHTML;
 
-  var html = `<p id="blog-text" contenteditable="true">${blogtext}</p>`
+  var html = `${blogtext}`
 
     const response = await fetch("/post/new", {
       method: 'POST',
