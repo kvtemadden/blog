@@ -1,0 +1,14 @@
+<div id="top"><h1 class="mb-5 page-title">My Blog Posts</h1><a id="new-post" href="/post/new">Create a new blog post</a> </div>
+
+{{#each myBlogs as |blog| }} 
+<div class="row align-center mb-5">
+  <div class="col-md-6 blog-post">
+    <h2 class="padding blog-header"><a href="/post/{{blog.id}}">{{blog.name}}</a></h2>
+    <p class="padding blog-description">{{blog.description}}</p>  
+    <p class="padding blog-info">{{format_date blog.date_created}} | Me</p>
+    <p class="padding-r edit"><a href="post/edit/{{blog.id}}">Edit post</a></p>
+   </div>
+</div>
+{{/each}}
+
+
