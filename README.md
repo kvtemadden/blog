@@ -9,6 +9,7 @@ Section | Description
 [Licence](#licence) | Licence for the source code
 
 ## Screenshot
+![Screenshot of working Note App](/Assets/tech-blog.PNG)
 
 You can access the Tech Blog [here](https://kvtemadden-tech-blog.herokuapp.com/)
 
