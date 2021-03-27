@@ -36,18 +36,12 @@ router.get('/edit/:id', async (req, res) => {
 
 router.post('/new', withAuth, async (req, res) => {
   try {
-    console.log(req);
     const newBlog = await Blog.create({
       name: req.body.name,
       description: req.body.description,
       user_id: req.session.user_id,
+      content: req.body.text 
     });
-
-    updateFilename(newBlog);
-    const filename = newBlog.id;
-    const writeFile = req.body.text;
-
-    writeToFile(writeFile, filename);
 
     res.status(200).json(newBlog);
   } catch (err) {
@@ -87,17 +81,14 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     });
 
     blogData.description = req.body.description;
-    const writeFile = req.body.text;
-    const filename = req.body.filename;
-
-    writeToFile(writeFile, filename);
+    blogData.content = req.body.text;
+    blogData.name = req.body.name;
 
     if (!blogData) {
       res.status(404).json({ message: 'No blog found with this id!' });
       return;
     }
 
-    blogData.name = req.body.name;
     res.status(200).json(blogData);
 
   } catch (err) {
