@@ -8,7 +8,9 @@
     "start": "node server.js",
     "seed": "node seeds/seed.js"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
