@@ -3,13 +3,13 @@
 <form class="form login-form">
   <div class="form-group">
     <p>Blog title:</p>
-    <h3 id="title" contenteditable="true">{{blog.name}} </h3>
+    <h3 class="form-field" id="title" contenteditable="true">{{blog.name}} </h3>
   </div>
   <div>
   <p>Blog description:</p>
-     <p id="desc" contenteditable="true">{{blog.description}}</p>
+     <p class="form-field" id="desc" contenteditable="true">{{blog.description}}</p>
     <p>Blog content:</p>
-    <p contenteditable="true" id="blog-text">{{blog.content}}</p>
+    <p class="form-field" contenteditable="true" id="blog-text">{{blog.content}}</p>
   </div>
   <div class="form-group">
     <button class="btn" type="submit" id="update">Update Post</button>
