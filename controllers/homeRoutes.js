@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const blogData = await Blog.findAll({
-      order: [['name', 'ASC']],
+      order: [['date_created', 'ASC']],
       include: [
         {
             model: User,
@@ -61,7 +61,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });

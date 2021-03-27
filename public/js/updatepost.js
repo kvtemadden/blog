@@ -3,7 +3,6 @@ const updatePost = async (event) => {
   event.preventDefault();
 
   var id = window.location.href.toString().split('edit/')[1];
-  console.log(id);
 
   var blogname = document.querySelector('#title').innerHTML;
   var blogdesc = document.querySelector('#desc').innerHTML;

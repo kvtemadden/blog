@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 const { User } = require('../../models');
 
@@ -58,7 +59,8 @@ router.post('/login', async (req, res) => {
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
-  } catch (err) {
+ 
+ } catch (err) {
     res.status(400).json(err);
   }
 });
@@ -72,5 +74,4 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
-
 module.exports = router;

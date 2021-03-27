@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const { Blog, Comment, User } = require('../../models');
 const withAuth = require('../../utils/auth');
-const fs = require("fs");
-const { Console } = require('console');
-
 
 router.get('/new', async (req, res) => {
   try {
@@ -46,7 +43,6 @@ router.post('/new', withAuth, async (req, res) => {
     res.status(200).json(newBlog);
   } catch (err) {
     res.status(400).json(err);
-    console.log(err);
   }
 });
 
@@ -73,7 +69,6 @@ router.delete('/edit/:id', withAuth, async (req, res) => {
 
 router.put('/edit/:id', withAuth, async (req, res) => {
   try {
-    console.log(req);
     const blogData = await Blog.update(req.body, {
       where: {
         id: req.params.id,
@@ -90,10 +85,8 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     }
 
     res.status(200).json(blogData);
-    console.log(blogData);
 
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -132,7 +125,6 @@ router.get('/:id', withAuth, async (req, res) => {
 
     // res.status(200).json(blogData);
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -144,14 +136,10 @@ router.post('/:id', withAuth, async (req, res) => {
       user_id: req.session.user_id,
       blog_id: req.body.id,
     });
-
-    console.log(req.session.user_id);
-
+    
     res.status(200).json(newComment);
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
-
   }
 });
 
