@@ -81,7 +81,7 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     });
 
     blogData.description = req.body.description;
-    blogData.content = req.body.text;
+    blogData.content = req.body.content;
     blogData.name = req.body.name;
 
     if (!blogData) {
@@ -90,6 +90,7 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     }
 
     res.status(200).json(blogData);
+    console.log(blogData);
 
   } catch (err) {
     console.log(err);
@@ -154,26 +155,5 @@ router.post('/:id', withAuth, async (req, res) => {
   }
 });
 
-function writeToFile(post, filename) {
-  fs.writeFile(`${__dirname}/views/partials/${filename}.handlebars`, post, (err) =>
-    err ? console.error(err) : console.log('New post added successfully!'));
-};
-
-updateFilename = async (blog) => {
-
-  const updatedFilename = blog.id;
-  try {
-    const getBlog = await Blog.findByPk(blog.id)
-
-    if (getBlog) {
-      getBlog.update({
-        filename: updatedFilename,
-      })
-
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 module.exports = router;

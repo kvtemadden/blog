@@ -8,17 +8,14 @@ const updatePost = async (event) => {
   var blogname = document.querySelector('#title').innerHTML;
   var blogdesc = document.querySelector('#desc').innerHTML;
   var blogtext = document.querySelector('#blog-text').innerHTML;
-  var filename = id.trim("?");
-  var html = `${blogtext}`
 
     const response = await fetch("/post/edit/" + id, {
       method: 'PUT',
       body: JSON.stringify({
         id: id,
         name: blogname,
-        text: html,
+        content: blogtext,
         description: blogdesc,
-        filename: filename
       }),
       headers: { 'Content-Type': 'application/json' },
     })
