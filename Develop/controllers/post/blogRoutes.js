@@ -116,10 +116,14 @@ router.get('/:id', withAuth, async (req, res) => {
         model: Comment,
         attributes: ['id', 'text', 'blog_id', 'user_id', 'date_created'],
         include: {
-            model: User,
-            attributes: ['name']
-        }
-    }],
+           model: User,
+           attributes: ['name']
+      }
+    },
+    {   model: User,
+        attributes: ['name']
+    }
+    ],
     });
 
     if (!blogData) {

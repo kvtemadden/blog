@@ -48,7 +48,8 @@ nav button:hover {
     float: left;
 }
 
-.read-more {
+
+.read-more, .edit {
     float: right;
     background: rgb(9, 177, 9);
     box-sizing: border-box;
@@ -58,22 +59,133 @@ nav button:hover {
     border-radius: 4px;
 }
 
-.read-more a {
+.row {
+    clear: both;
+}
+
+#top {
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.page-title {
+    float: left;
+    margin-right: 3rem;
+}
+
+#new-post {
+    background: rgb(9, 177, 9);
+    box-sizing: border-box;
+    padding: 0.8rem 0.5rem;
+    color: #fff;
+    border: #fff solid 2px;
+    border-radius: 4px;
+    margin-bottom: 3rem;
+    float: left;
+    margin-top: 5px;
+}
+
+.read-more a, .edit a, #new-post {
     color: #fff;
     font-weight: 500;
 }
 
-.read-more a:hover {
+.edit, .read-more {
+    margin-bottom: 0rem;
+    margin-top: 1.5rem;
+}
+
+.read-more a:hover, .edit a:hover, #new-post:hover {
     text-decoration: none;
 }
 
-.read-more:hover {
+.read-more:hover, .edit:hover, #new-post:hover {
     background: green;
     cursor: pointer;
 }
-.blog-post {
+
+.blog-post, .card {
     background: #eaeaea;
     border: 2px solid #212121;
     padding: 2rem;
     box-shadow: 0 3px 5px -1px rgb(0 0 0 / 10%), 0 6px 10px 0 rgb(0 0 0 / 7%), 0 1px 18px 0 rgb(0 0 0 / 6%);
+}
+
+.form-field {
+    border: 2px solid #212121;
+    padding: 10px;
+}
+
+.form {
+    margin-top: 2rem;
+}
+
+.btn:hover {
+    background: rgb(9, 177, 9);
+    box-sizing: border-box;
+    padding: 0.5rem 0.5rem;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn {
+    background: transparent;
+    font-weight: 500;
+    box-sizing: border-box;
+    padding: 0.5rem 0.5rem;
+
+    color: rgb(9, 177, 9);
+    border: rgb(9, 177, 9) solid 2px;
+    border-radius: 4px;
+}
+
+nav .btn {
+    background: rgb(9, 177, 9);
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+nav .btn:hover {
+    background: green;
+    border: green solid 2px;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comments {
+    max-width: 800px;
+    margin-top: 3rem;
+}
+
+.card {
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid #dddddd;
+    border-top: 0px
+}
+
+.content {
+    max-width: 1000px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#comment {
+    max-width: 800px;
+    height: 300px;
+}
+
+.margin-r {
+    margin-right: 2rem;
+}
+
+#signup-text, #login-text {
+    float: right;
 }

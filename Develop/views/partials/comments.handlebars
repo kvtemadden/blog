@@ -1,12 +1,10 @@
 <h3>Comments:</h3>
-<p contenteditable="true" id="comment">Enter a comment...</p>
-<button id="submit-comment">Submit comment</button>
-<hr>
+<p class="form-field" contenteditable="true" id="comment">Enter a comment...</p>
+<button class="btn" id="submit-comment">Submit comment</button>
 
 <div class="comments">
   {{#each this}}
     <div class="card">
-        <h3 class="card-header"></h3>
         <section class="comment card-body">
             <div class="text">
                 {{this.text}}
@@ -19,3 +17,4 @@
     </div>
   {{/each}}
 </div>
+
