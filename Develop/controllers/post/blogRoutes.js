@@ -164,7 +164,7 @@ router.post('/:id', withAuth, async (req, res) => {
 });
 
 function writeToFile(post, filename) {
-  fs.writeFile(`./views/partials/${filename}.handlebars`, post, (err) =>
+  fs.writeFile(`${__dirname}/views/partials/${filename}.handlebars`, post, (err) =>
     err ? console.error(err) : console.log('New post added successfully!'));
 };
 
